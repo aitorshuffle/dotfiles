@@ -1,8 +1,7 @@
 # Command line tool shell aliases
 
 alias ..='cd ..'
-which eza
-if [[ $? == 0 ]]; then
+if command -v eza &>/dev/null; then
     alias ls='eza --long --git -a --header --group'
     alias tree='eza --tree --level=2 --long -a --header --git'
 fi
