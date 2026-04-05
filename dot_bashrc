@@ -38,6 +38,10 @@ if [ -d "$HOME/.shell_aliases" ]; then
     done
 fi
 
+# Actively wipe local memory aliases before parsing functions so you never get a parsing crash
+# (Only wiping rm and cd because we explicitly overwrite them as core functions!)
+unalias rm cd 2>/dev/null || true
+
 # Source all shell functions from ~/.shell_functions
 if [ -d "$HOME/.shell_functions" ]; then
     for f in "$HOME/.shell_functions/"*.sh; do
