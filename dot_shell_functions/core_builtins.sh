@@ -7,7 +7,8 @@ cd() {
 }
 
 # Safely print what is being deleted before executing RM entirely
+# We also natively inject -i here so you don't lose that safety net!
 rm() { 
     echo "Deleting: $@"
-    command rm "$@" 
+    command rm -i "$@" 
 }

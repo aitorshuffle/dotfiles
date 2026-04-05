@@ -7,7 +7,6 @@ alias l='ls -CFlh --color=auto'
 # Safety aliases (prompts before overwriting)
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -i'
 
 # Navigation
 alias ..='cd ..'
