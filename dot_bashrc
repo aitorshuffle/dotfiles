@@ -1,0 +1,54 @@
+# ~/.bashrc
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Source PATH configuration
+if [ -f "$HOME/.path" ]; then
+    source "$HOME/.path"
+fi
+
+# General history settings
+HISTCONTROL=ignoreboth
+shopt -s histappend
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Update the values of LINES and COLUMNS after each command
+shopt -s checkwinsize
+
+# Enable programmable completion features (standard Ubuntu fallback)
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# Source all aliases from ~/.shell_aliases
+if [ -d "$HOME/.shell_aliases" ]; then
+    for f in "$HOME/.shell_aliases/"*.sh; do
+        if [ -r "$f" ]; then
+            source "$f"
+        fi
+    done
+fi
+
+# Initialize Starship prompt
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init bash)"
+fi
+
+# Load Node Version Manager (NVM)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Initialize direnv (Eric's data-science notes recommendation)
+if command -v direnv >/dev/null 2>&1; then
+    eval "$(direnv hook bash)"
+fi

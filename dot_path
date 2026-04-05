@@ -1,0 +1,21 @@
+# ~/.path
+
+# Centralized location for PATH definitions
+
+# Make sure local user bins are in PATH (for tools like starship, uv, etc.)
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# Pixi default binary path
+export PATH="$HOME/.pixi/bin:$PATH"
+
+# NPM global bins
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+# Source local environment variable script (if it exists)
+if [ -f "$HOME/.local/bin/env" ]; then
+    . "$HOME/.local/bin/env"
+fi
+
+# Examples of how to expand PATH:
+# export PATH="/usr/local/go/bin:~/go/bin:$PATH"
+# export PATH="$HOME/.cargo/bin:$PATH"
