@@ -1,0 +1,9 @@
+# ~/.inputrc
+
+# Enable history searching with Up and Down arrows based on what has already been typed
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Fallback bindings for different terminal emulators
+"\eOA": history-search-backward
+"\eOB": history-search-forward
