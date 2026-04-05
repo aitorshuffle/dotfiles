@@ -41,11 +41,13 @@ Because our `./install.sh` script maps `chezmoi` directly back to the folder you
 The architecture strictly categorizes shell responsibilities:
 
 - `dot_bashrc` -> Deploys to `~/.bashrc`. Entrypoint config. NVM, direnv, and Starship hooks.
+- `dot_inputrc` -> Deploys to `~/.inputrc`. Background GNU readline settings linking shell history to your Arrow keys natively.
 - `dot_path` -> Deploys to `~/.path`. Your absolute source of truth for loading ALL binaries.
 - `dot_shell_aliases/` -> Deploys to `~/.shell_aliases/`. Functional shortcut groups (`git.sh`, `general.sh`). 
 - `dot_shell_functions/` -> Deploys to `~/.shell_functions/`. Enhanced functions that rebuild core commands like `cd` and `rm`.
-- `dot_gitconfig.tmpl` -> Deploys to `~/.gitconfig`. Templated to intelligently ping your actual current email.
-- `dot_config/starship.toml` -> Deploys to `~/.config/starship.toml`. Beautiful shell definitions. 
+- `dot_gitconfig.tmpl` -> Deploys to `~/.gitconfig`. Tracked Git environment (diff-so-fancy integrations, pull rebasing, and automated upstreams).
+- `dot_config/starship.toml` -> Deploys to `~/.config/starship.toml`. Beautiful shell prompt definitions. 
+- `dot_config/direnv/direnv.toml` -> Deploys to `~/.config/direnv/direnv.toml`. Overrides direnv background behavior (like implicitly loading generic `.env` files).
 
 ## Pending
 * Add VSCode/Cursor/Antigravity settings so that they are synchronize across machines and can be used in any of them
