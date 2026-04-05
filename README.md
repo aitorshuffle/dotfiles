@@ -47,6 +47,9 @@ The architecture strictly categorizes shell responsibilities:
 - `dot_gitconfig.tmpl` -> Deploys to `~/.gitconfig`. Templated to intelligently ping your actual current email.
 - `dot_config/starship.toml` -> Deploys to `~/.config/starship.toml`. Beautiful shell definitions. 
 
+## Pending
+* Add VSCode/Cursor/Antigravity settings so that they are synchronize across machines and can be used in any of them
+* Reference genai-tools
 ## References
 
 - [Eric J. Ma's Data Science Bootstrap Notes](https://ericmjl.github.io/data-science-bootstrap-notes/)
