@@ -95,6 +95,6 @@ rm -rf "$HOME/.local/share/chezmoi"
 ln -s "$REPO_DIR" "$HOME/.local/share/chezmoi"
 
 echo "Applying dotfiles to home directory..."
-chezmoi apply
+chezmoi init --apply
 
 echo "Dotfiles successfully installed! Please restart your terminal."
