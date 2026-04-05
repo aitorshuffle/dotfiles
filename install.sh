@@ -39,8 +39,11 @@ fi
 # 3. Initialize and apply dotfiles
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-echo "Initializing chezmoi with source directory $REPO_DIR..."
-chezmoi init "file://$REPO_DIR"
+echo "Linking chezmoi natively to your active development folder ($REPO_DIR)..."
+# We delete the default hidden repo if it exists and symlink it to your active workspace 
+# so you can natively edit files in VSCode/Cursor and push with git!
+rm -rf "$HOME/.local/share/chezmoi"
+ln -s "$REPO_DIR" "$HOME/.local/share/chezmoi"
 
 echo "Applying dotfiles to home directory..."
 chezmoi apply

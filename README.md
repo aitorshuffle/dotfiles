@@ -1,54 +1,52 @@
 # Aitor's Dotfiles
 
-These are my personal dotfiles, used to customize my computing environment wherever I go.
+These are my personal dotfiles, used to customize my computing environment seamlessly wherever I go.
 
 ## Philosophy
 
-This repository is heavily inspired by Eric J. Ma's [Data Science Bootstrap Notes](https://ericmjl.github.io/data-science-bootstrap-notes/), but with some key adaptations:
-1. **Ubuntu/Bash over macOS/ZSH**: These configurations are optimized for Ubuntu with Bash (perfect for WSL or native Ubuntu servers).
-2. **Powered by `chezmoi`**: Instead of raw bash scripts and manual symlinks, this repo uses [chezmoi](https://chezmoi.io/) to securely template, deploy, and manage the environment.
-3. **Modern Data Science Tooling**: Automated integration of state-of-the-art developer tools natively embraced by Eric J Ma:
+This repository is basically Eric J. Ma's [Data Science Bootstrap Notes](https://ericmjl.github.io/data-science-bootstrap-notes/), completely modernized:
+1. **Ubuntu/Bash over macOS/ZSH**: These configurations are natively optimized for Ubuntu with Bash (perfect for WSL or Native Ubuntu servers).
+2. **Powered by `chezmoi`**: Instead of manually parsing raw bash scripts and symlinking aliases, this repo uses [chezmoi](https://chezmoi.io/) to explicitly manage, template, and deploy configurations safely.
+3. **Painless IDE Support**: Our configuration binds `chezmoi` directly to this working directory via symlinks. You don't have to navigate hidden `.local` folders. Just open this exact repository in **VSCode, Cursor, or Vim** and make your edits! 
+4. **Modern Tooling Base**: Integrated state-of-the-art tools directly into the bash architecture:
    - **[uv](https://github.com/astral-sh/uv)**: Lightning-fast Python package installer.
-   - **[pixi](https://github.com/prefix-dev/pixi)**: Extremely fast C++ alternative package manager to conda.
-   - **[starship](https://starship.rs/)**: Aesthetic, blazing fast cross-shell prompt.
+   - **[pixi](https://github.com/prefix-dev/pixi)**: Extremely fast C++ conda alternative.
+   - **[starship](https://starship.rs/)**: Aesthetic, blazing-fast cross-shell prompt.
 
 ## Installation
 
-### For a new machine
-
-Just clone the repository and run the installation script:
+When starting on a new machine, clone the repo anywhere you want to maintain your code natively (e.g. `~/projects/dotfiles` or `~/dev/personal/dotfiles`) and run the setup.
 
 ```bash
-cd ~
+cd ~/dev/personal
 git clone https://github.com/aitorshuffle/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
 
 >**Note on existing configurations:**
-> If you already have manual configurations on your system (e.g., an existing `~/.bashrc`), it is highly recommended to integrate your manual changes into this repository's files *before* applying, so you don't lose data. 
+> `chezmoi` will aggressively overwrite conflicting configurations on your new machine safely. If you have active code in `~/.bashrc` on your current computer, copy it into this repository's `dot_bashrc` **before** running `install.sh`!
 
-## How to manage dotfiles locally (The `chezmoi` way)
+## How to Manage Your Dotfiles (The "IDE" Workflow)
 
-Because this repository uses `chezmoi`, the actual source truth of your dotfiles now lives securely in `~/.local/share/chezmoi` after installation! **Do not** manually edit the files in your original git clone path anymore.
+Because our `./install.sh` script maps `chezmoi` directly back to the folder you manually specified via a symlink, managing your files is incredibly natural whether you use the terminal or an IDE like Cursor:
 
-- **`chezmoi cd`**: Drops you smoothly into the `~/.local/share/chezmoi` folder. Run all your `git commit` and `git push` commands here to save your dotfiles to GitHub! Type `exit` when done to go back to your normal terminal.
-- **`chezmoi edit ~/.bashrc`**: Opens your `~/.bashrc` seamlessly in your configured editor for modifications.
-- **`chezmoi add ~/.tmux.conf`**: Pulls an existing system file permanently into your dotfile repo.
-- **`chezmoi apply`**: Instructs chezmoi to apply all configurations across your machine and apply any changes aggressively.
+1. **Editing Code**: Fully edit any file (e.g., `dot_bashrc` or `dot_shell_aliases/general.sh`) directly in your code editor of choice (Cursor, VSCode, Vim).
+2. **Applying Code**: Hitting save doesn't automatically map it to the active system. Whenever you are ready to update your active machine with your edits, simply type `chezmoi apply` in any terminal!
+3. **Adding New Files**: Got a new `~/.tmux.conf` or a `~/.vimrc` you want to start tracking? Type `chezmoi add ~/.vimrc`. The file will immediately show up here in your repository as `dot_vimrc` to be tracked!
+4. **Deploying to GitHub**: Since you are editing directly inside your classic Git repository, you can just `git add`, `git commit`, and `git push` via VSCode's GUI or the terminal natively without dealing with clunky `chezmoi cd` or separate local workspaces.
 
-## Structure
+## Structure 
 
-Following Eric's principles, we keep the configuration compartmentalized into clear functional areas rather than dumping everything into `~/.bashrc`!
+The architecture strictly categorizes shell responsibilities:
 
-- `dot_bashrc` -> Deploys to `~/.bashrc`. The entrypoint. Handles programmable completions, NVM, and `direnv`.
-- `dot_path` -> Deploys to `~/.path`. Your single source of truth for custom binary paths (`~/.local/bin`, `~/bin`, npm globals, pixi bins).
-- `dot_shell_aliases/` -> Deploys to `~/.shell_aliases/`. Contains separated scripts for Git (`git.sh`) and general shortcuts (`general.sh`).
-- `dot_gitconfig.tmpl` -> Deploys to `~/.gitconfig`. Templated to securely inject your email via prompt on installation.
-- `dot_config/starship.toml` -> Deploys to `~/.config/starship.toml`. Controls the clean structure of the Starship prompt.
+- `dot_bashrc` -> Deploys to `~/.bashrc`. Entrypoint config. NVM, direnv, and Starship hooks.
+- `dot_path` -> Deploys to `~/.path`. Your absolute source of truth for loading ALL binaries.
+- `dot_shell_aliases/` -> Deploys to `~/.shell_aliases/`. Functional groups (`git.sh`, `general.sh`). 
+- `dot_gitconfig.tmpl` -> Deploys to `~/.gitconfig`. Templated to intelligently ping your actual current email.
+- `dot_config/starship.toml` -> Deploys to `~/.config/starship.toml`. Beautiful shell definitions. 
 
-## Inspirations
+## References
 
 - [Eric J. Ma's Data Science Bootstrap Notes](https://ericmjl.github.io/data-science-bootstrap-notes/)
-- [Eric J. Ma's .dotfiles](https://github.com/ericmjl/dotfiles)
-- [Mathias' .dotfiles (recursively from Eric's)](https://github.com/mathiasbynens/dotfiles)
+- [Chezmoi Reference Documentation](https://www.chezmoi.io/)
