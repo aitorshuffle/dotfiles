@@ -17,7 +17,7 @@ alias ...='cd ../..'
 alias update='sudo apt update && sudo apt upgrade -y'
 
 # System shortcuts
-alias please="sudo"i
+alias please="sudo"
 
 # port management
 alias wtfport='f() { lsof -i tcp:$1; }; f'  # src: https://ericmjl.github.io/data-science-bootstrap-notes/shell/aliases/

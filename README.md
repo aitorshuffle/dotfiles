@@ -42,7 +42,8 @@ The architecture strictly categorizes shell responsibilities:
 
 - `dot_bashrc` -> Deploys to `~/.bashrc`. Entrypoint config. NVM, direnv, and Starship hooks.
 - `dot_path` -> Deploys to `~/.path`. Your absolute source of truth for loading ALL binaries.
-- `dot_shell_aliases/` -> Deploys to `~/.shell_aliases/`. Functional groups (`git.sh`, `general.sh`). 
+- `dot_shell_aliases/` -> Deploys to `~/.shell_aliases/`. Functional shortcut groups (`git.sh`, `general.sh`). 
+- `dot_shell_functions/` -> Deploys to `~/.shell_functions/`. Enhanced functions that rebuild core commands like `cd` and `rm`.
 - `dot_gitconfig.tmpl` -> Deploys to `~/.gitconfig`. Templated to intelligently ping your actual current email.
 - `dot_config/starship.toml` -> Deploys to `~/.config/starship.toml`. Beautiful shell definitions. 
 

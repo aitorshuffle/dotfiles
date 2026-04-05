@@ -38,6 +38,15 @@ if [ -d "$HOME/.shell_aliases" ]; then
     done
 fi
 
+# Source all shell functions from ~/.shell_functions
+if [ -d "$HOME/.shell_functions" ]; then
+    for f in "$HOME/.shell_functions/"*.sh; do
+        if [ -r "$f" ]; then
+            source "$f"
+        fi
+    done
+fi
+
 # Initialize Starship prompt
 if command -v starship >/dev/null 2>&1; then
     eval "$(starship init bash)"
