@@ -56,7 +56,7 @@ fi
 if ! command -v diff-so-fancy >/dev/null 2>&1; then
     echo "Installing diff-so-fancy to ~/.local/bin..."
     mkdir -p "$HOME/.local/bin"
-    curl -sSfL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o "$HOME/.local/bin/diff-so-fancy"
+    curl -sSfL https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy -o "$HOME/.local/bin/diff-so-fancy"
     chmod +x "$HOME/.local/bin/diff-so-fancy"
 fi
 
