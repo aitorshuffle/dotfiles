@@ -1,8 +1,8 @@
-# General Shell Aliases
-alias ls='ls --color=auto'
-alias ll='ls -la --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CFlh --color=auto'
+# General Shell Aliases (powered by eza)
+alias ls='eza --icons'
+alias ll='eza -la --icons --group-directories-first'
+alias la='eza -a --icons --group-directories-first'
+alias l='eza -la --icons --group-directories-first --header'
 
 # Safety aliases (prompts before overwriting)
 alias cp='cp -i'
