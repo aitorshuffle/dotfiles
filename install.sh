@@ -42,8 +42,25 @@ if ! command -v direnv >/dev/null 2>&1; then
     curl -sfL https://direnv.net/install.sh | bash
 fi
 
+# 3. Install core system software packages (Eric J Ma Setup)
+echo "Installing global binaries via pixi..."
+pixi global install ripgrep bat fd-find fzf croc eza mosh tmux atuin
 
-# 3. Initialize and apply dotfiles
+if command -v apt-get >/dev/null 2>&1; then
+    echo "Installing system packages via apt. This may prompt for your sudo password!"
+    sudo apt update || echo "Apt update failed safely. Skipping."
+    sudo apt install -y tree diff-so-fancy gcc || echo "Apt install failed safely. Skipping."
+fi
+
+# 4. Optional Heavy Daemon Installs 
+# (Uncomment on a per-machine basis to install)
+# echo "Installing Docker..."
+# curl -fsSL https://get.docker.com | sh
+# echo "Installing Ollama..."
+# curl -fsSL https://ollama.com/install.sh | sh
+
+
+# 5. Initialize and apply dotfiles
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "Linking chezmoi natively to your active development folder ($REPO_DIR)..."
