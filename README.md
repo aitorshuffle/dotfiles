@@ -18,7 +18,8 @@ This repository is basically Eric J. Ma's [Data Science Bootstrap Notes](https:/
 This environment utilizes icons heavily for `eza` and `starship`. The Linux setup automatically downloads the **FiraCode Nerd Font** for you. However, to see these icons gracefully inside your Windows/Host IDE (like VSCode or Cursor):
 
 1. Make sure your computer natively has [FiraCode Nerd Font](https://www.nerdfonts.com/font-downloads) installed.
-2. In your IDE settings, change `Terminal > Integrated: Font Family` to `'FiraCode Nerd Font'`.
+2. In your IDE settings (Cursor/VSCode), change `Terminal > Integrated: Font Family` to `'FiraCode Nerd Font'`.
+3. **If using Windows Terminal for WSL:** Go to Terminal Settings -> **Profiles > Defaults** -> **Appearance**, and change the **Font face** to `FiraCode Nerd Font` to fix all standalone `wsl` launches natively.
 
 ## Installation
 
