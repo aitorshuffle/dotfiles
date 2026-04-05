@@ -4,6 +4,9 @@ alias ll='eza -la --icons --group-directories-first'
 alias la='eza -a --icons --group-directories-first'
 alias l='eza -la --icons --group-directories-first --header'
 
+# File viewing
+alias cat='bat'
+
 # Safety aliases (prompts before overwriting)
 alias cp='cp -i'
 alias mv='mv -i'
