@@ -49,7 +49,15 @@ pixi global install ripgrep bat fd-find fzf croc eza mosh tmux atuin
 if command -v apt-get >/dev/null 2>&1; then
     echo "Installing system packages via apt. This may prompt for your sudo password!"
     sudo apt update || echo "Apt update failed safely. Skipping."
-    sudo apt install -y tree diff-so-fancy gcc || echo "Apt install failed safely. Skipping."
+    sudo apt install -y tree gcc || echo "Apt install failed safely. Skipping."
+fi
+
+# diff-so-fancy isn't natively in Ubuntu apt repos, so we fetch the raw executable directly
+if ! command -v diff-so-fancy >/dev/null 2>&1; then
+    echo "Installing diff-so-fancy to ~/.local/bin..."
+    mkdir -p "$HOME/.local/bin"
+    curl -sSfL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o "$HOME/.local/bin/diff-so-fancy"
+    chmod +x "$HOME/.local/bin/diff-so-fancy"
 fi
 
 # 4. Optional Heavy Daemon Installs 
