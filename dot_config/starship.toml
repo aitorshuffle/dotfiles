@@ -2,11 +2,13 @@
 # Get editor completions based on the schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Use standard prompt order
 format = """
-[╭─](dimmed white)$username$hostname$directory$git_branch$git_status
+[╭─](dimmed white)$username$hostname$directory$all
 [╰─](dimmed white)$character
 """
+
+# Move non-essential metrics to the right side of the terminal
+right_format = """$cmd_duration$time"""
 
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
@@ -30,3 +32,22 @@ style = "bold green"
 
 [git_status]
 style = "bold red"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+
+[cmd_duration]
+min_time = 2_000
+format = "[⏳ $duration](bold yellow) "
+
+[time]
+disabled = false
+format = "[🕒 $time](dimmed white)"
+time_format = "%H:%M"
+
+# Prettier language icons
+[python]
+symbol = "🐍 "
+# Show only the virtual environment name (not the verbose python version) to keep it clean
+# format = '[${symbol}${pyctx}]($style) '
+
+[package]
+symbol = "📦 "
