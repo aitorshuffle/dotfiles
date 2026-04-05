@@ -2,12 +2,14 @@
 # (from https://ericmjl.github.io/data-science-bootstrap-notes/shell/aliases/)
 
 # Automatically list contents after changing directories
+unalias cd 2>/dev/null || true
 cd() { 
     command cd "$@" && ls 
 }
 
 # Safely print what is being deleted before executing RM entirely
 # We also natively inject -i here so you don't lose that safety net!
+unalias rm 2>/dev/null || true
 rm() { 
     echo "Deleting: $@"
     command rm -i "$@" 
