@@ -35,6 +35,13 @@ if ! command -v starship >/dev/null 2>&1; then
     sh -c "$(curl -fsLS https://starship.rs/install.sh)" -- -y --bin-dir ~/.local/bin
 fi
 
+# Install direnv (not with pixi, so as to isolate dotfiles core tools from rest)
+if ! command -v direnv >/dev/null 2>&1; then
+    echo "Installing direnv to ~/.local/bin..."
+    export bin_path="$HOME/.local/bin"
+    curl -sfL https://direnv.net/install.sh | bash
+fi
+
 
 # 3. Initialize and apply dotfiles
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
