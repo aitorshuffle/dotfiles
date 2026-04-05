@@ -13,6 +13,13 @@ This repository is basically Eric J. Ma's [Data Science Bootstrap Notes](https:/
    - **[pixi](https://github.com/prefix-dev/pixi)**: Extremely fast C++ conda alternative.
    - **[starship](https://starship.rs/)**: Aesthetic, blazing-fast cross-shell prompt.
 
+## Prerequisites & IDE Setup
+
+This environment utilizes icons heavily for `eza` and `starship`. The Linux setup automatically downloads the **FiraCode Nerd Font** for you. However, to see these icons gracefully inside your Windows/Host IDE (like VSCode or Cursor):
+
+1. Make sure your computer natively has [FiraCode Nerd Font](https://www.nerdfonts.com/font-downloads) installed.
+2. In your IDE settings, change `Terminal > Integrated: Font Family` to `'FiraCode Nerd Font'`.
+
 ## Installation
 
 When starting on a new machine, clone the repo anywhere you want to maintain your code natively (e.g. `~/projects/dotfiles` or `~/dev/personal/dotfiles`) and run the setup.

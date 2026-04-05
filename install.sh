@@ -60,6 +60,18 @@ if ! command -v diff-so-fancy >/dev/null 2>&1; then
     chmod +x "$HOME/.local/bin/diff-so-fancy"
 fi
 
+# Automatically install a Linux-native Nerd Font for eza and starship
+FONT_DIR="$HOME/.local/share/fonts"
+if ! fc-list 2>/dev/null | grep -qi "FiraCode"; then
+    echo "Installing FiraCode Nerd Font to ~/.local/share/fonts..."
+    mkdir -p "$FONT_DIR"
+    curl -fLo "$FONT_DIR/FiraCodeNerdFont-Regular.ttf" --create-dirs \
+        https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf
+    if command -v fc-cache >/dev/null 2>&1; then
+        fc-cache -f -v >/dev/null
+    fi
+fi
+
 # 4. Optional Heavy Daemon Installs 
 # (Uncomment on a per-machine basis to install)
 # echo "Installing Docker..."
