@@ -24,8 +24,13 @@ fi
 
 # Install pixi (fast conda alternative)
 if ! command -v pixi >/dev/null 2>&1; then
-    echo "Installing pixi..."
-    curl -fsSL https://pixi.sh/install.sh | bash
+    if [ -x "$HOME/.pixi/bin/pixi" ]; then
+        export PATH="$HOME/.pixi/bin:$PATH"
+    else
+        echo "Installing pixi..."
+        curl -fsSL https://pixi.sh/install.sh | bash
+        export PATH="$HOME/.pixi/bin:$PATH"
+    fi
 fi
 
 # Install starship (fast cross-shell prompt)
