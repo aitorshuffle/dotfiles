@@ -10,12 +10,13 @@ I have placed my configurations here so that I can replication my terminal/compu
 
 # Inspirations
 
-[Mathias' .dotfiles][1]
+[Eric J. Ma's .dotfiles][1]
+[Mathias' .dotfiles (recursively from Eric's)][2]
 
 # Installation (for myself)
 
     $ cd ~
-    $ git clone git@github.com:ericmjl/dotfiles
+    $ git clone git@github.com:aitorshuffle/dotfiles
     $ cd dotfiles
     $ bash install.sh
 
@@ -35,4 +36,5 @@ Otherwise, do:
     $ cd dotfiles
     $ bash install.sh
 
-[1]: https://github.com/mathiasbynens/dotfiles
+[1]: https://github.com/ericmjl/dotfiles
+[2]: https://github.com/mathiasbynens/dotfiles
