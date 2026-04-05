@@ -1,6 +1,6 @@
 # General Shell Aliases
 alias ls='ls --color=auto'
-alias ll='ls -l --color=auto'
+alias ll='ls -la --color=auto'
 alias la='ls -A --color=auto'
 alias l='ls -CFlh --color=auto'
 
@@ -15,3 +15,7 @@ alias ...='cd ../..'
 
 # Updates
 alias update='sudo apt update && sudo apt upgrade -y'
+
+# System shortcuts
+alias please="sudo"
+alias ports="lsof -i -P -n | grep LISTEN"

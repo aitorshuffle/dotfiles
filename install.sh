@@ -8,8 +8,9 @@ echo "Starting dotfiles setup with chezmoi..."
 # 1. Install Chezmoi
 if ! command -v chezmoi >/dev/null 2>&1; then
     echo "chezmoi not found. Installing..."
-    sh -c "$(curl -fsLS get.chezmoi.io)"
-    export PATH="./bin:$PATH"
+    mkdir -p "$HOME/.local/bin"
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # 2. Install modern data science & terminal tools
