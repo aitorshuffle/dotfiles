@@ -1,8 +1,8 @@
 # General Shell Aliases (powered by eza)
-alias ls='eza --icons'
-alias ll='eza -la --icons --group-directories-first'
-alias la='eza -a --icons --group-directories-first'
-alias l='eza -la --icons --group-directories-first --header'
+alias ls='eza --icons --color-scale -o'
+alias ll='eza -la --icons --group-directories-first --color-scale -o'
+alias la='eza -a --icons --group-directories-first --color-scale -o'
+alias l='eza -la --icons --group-directories-first --header --color-scale -o'
 
 # File viewing
 alias cat='bat'
