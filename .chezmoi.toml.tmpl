@@ -1,6 +1,7 @@
+{{- $email := (output "sh" "-c" "git config --global user.email || true") | trim -}}
 [sourceVCS]
     autoCommit = false
     autoPush = false
 
 [data]
-    email = {{ promptString "What is your git commit email address?" | quote }}
+    email = {{ promptString "What is your git commit email address?" $email | quote }}
