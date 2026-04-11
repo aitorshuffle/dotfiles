@@ -27,4 +27,4 @@ alias killport='f() { lsof -ti:$1 | xargs kill -9; }; f'  # src: https://ericmjl
 alias ports="lsof -i -P -n | grep LISTEN"
 
 # tmux
-alias t='tmux new-session -A -s "$(basename $PWD) $(echo $PWD | shasum -a 256 | cut -c1-4)"'
+alias 't'='tmux new-session -A -s "$(basename $PWD | tr ":" "_") $(echo $PWD | shasum -a 256 | cut -c1-4)"'

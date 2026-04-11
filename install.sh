@@ -49,7 +49,7 @@ fi
 
 # 3. Install core system software packages (Eric J Ma Setup)
 echo "Installing global binaries via pixi..."
-pixi global install ripgrep bat fd-find fzf croc eza mosh tmux atuin glow-md
+pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md
 
 if command -v apt-get >/dev/null 2>&1; then
     echo "Installing system packages via apt. This may prompt for your sudo password!"
