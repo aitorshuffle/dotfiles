@@ -65,3 +65,7 @@ export NVM_DIR="$HOME/.nvm"
 if command -v direnv >/dev/null 2>&1; then
     eval "$(direnv hook bash)"
 fi
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

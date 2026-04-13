@@ -57,9 +57,12 @@ The architecture strictly categorizes shell responsibilities:
 - `dot_config/starship.toml` -> Deploys to `~/.config/starship.toml`. Beautiful shell prompt definitions. 
 - `dot_config/direnv/direnv.toml` -> Deploys to `~/.config/direnv/direnv.toml`. Overrides direnv background behavior (like implicitly loading generic `.env` files).
 
-## Pending
+## Pending (ToDos)
+NOTE: pending implementations will be managed through issues instead of this list, in https://github.com/aitorshuffle/dotfiles/issues.
+You can add an issue using `gh issue create -t "issue title" -a "@me"`
 * Add VSCode/Cursor/Antigravity settings so that they are synchronize across machines and can be used in any of them
 * Reference genai-tools
+* Check and install the desired tpm plugins from https://github.com/tmux-plugins/list
 ## References
 
 - [Eric J. Ma's Data Science Bootstrap Notes](https://ericmjl.github.io/data-science-bootstrap-notes/)
