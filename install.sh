@@ -22,6 +22,17 @@ if ! command -v uv >/dev/null 2>&1; then
     curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
+# bun — required by the Ataraxy-Labs/opensessions tmux plugin (TPM runs bun install in the plugin dir)
+if ! command -v bun >/dev/null 2>&1; then
+    if [ -x "$HOME/.bun/bin/bun" ]; then
+        export PATH="$HOME/.bun/bin:$PATH"
+    else
+        echo "Installing bun..."
+        curl -fsSL https://bun.sh/install | bash
+        export PATH="$HOME/.bun/bin:$PATH"
+    fi
+fi
+
 # Install pixi (fast conda alternative)
 if ! command -v pixi >/dev/null 2>&1; then
     if [ -x "$HOME/.pixi/bin/pixi" ]; then

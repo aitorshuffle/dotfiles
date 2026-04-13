@@ -11,6 +11,10 @@ export PATH="$HOME/.pixi/bin:$PATH"
 # NPM global bins
 export PATH="$HOME/.npm-global/bin:$PATH"
 
+# Bun (opensessions TPM plugin runs `bun install` in ~/.config/tmux/plugins/opensessions)
+export BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # Source local environment variable script (if it exists)
 if [ -f "$HOME/.local/bin/env" ]; then
     . "$HOME/.local/bin/env"
