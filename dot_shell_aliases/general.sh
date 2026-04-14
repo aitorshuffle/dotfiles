@@ -6,7 +6,8 @@ alias l='eza -la --icons --group-directories-first --header --color-scale -o'
 unalias ld 2>/dev/null || true
 
 _human_size() {
-    numfmt --to=iec --suffix=B --format="%.1f" "$1" 2>/dev/null || printf '%sB\n' "$1"
+    human_size=$(numfmt --to=iec --suffix='' --format="%.1f" "$1" 2>/dev/null) || human_size="$1"
+    printf '%s\n' "${human_size/K/k}"
 }
 
 ld() {
@@ -27,7 +28,7 @@ ld() {
     fi
 
     if [ "${#entries[@]}" -eq 0 ]; then
-        printf 'Permissions Octal User Size Modified Name\n'
+        printf 'Octal Permissions Size User Date Modified Name\n'
         return 0
     fi
 
@@ -41,7 +42,7 @@ ld() {
         done | sort -k1,1 -k2,2
     )
 
-    printf 'Permissions Octal User Size Modified Name\n'
+    printf 'Octal Permissions Size User Date Modified Name\n'
 
     start_time=$SECONDS
     while IFS=$'\t' read -r _sort_key entry; do
@@ -66,12 +67,17 @@ ld() {
         fi
 
         if [ -n "$modified_epoch" ]; then
-            modified_time=$(date -d "@$modified_epoch" '+%Y-%m-%d %H:%M' 2>/dev/null)
+            modified_time=$(date -d "@$modified_epoch" '+%e %b %H:%M' 2>/dev/null)
         else
             modified_time='-'
         fi
 
         display_size=$(_human_size "${byte_size:-0}")
+        octal_display="-"
+
+        if [ -n "$octal_permissions" ]; then
+            octal_display=$(printf '0%s' "$octal_permissions")
+        fi
 
         if [ -d "$entry" ] && [ ! -L "$entry" ] && [ "$recursive_timed_out" -eq 0 ]; then
             elapsed_time=$((SECONDS - start_time))
@@ -96,11 +102,11 @@ ld() {
             fi
         fi
 
-        printf '%-11s %-5s %-8s %8s %16s %s\n' \
+        printf '%-5s %-11s %10s %-8s %16s %s\n' \
+            "$octal_display" \
             "${permissions:--}" \
-            "${octal_permissions:---}" \
-            "${owner:--}" \
             "$display_size" \
+            "${owner:--}" \
             "$modified_time" \
             "$display_name"
     done <<EOF
