@@ -108,4 +108,32 @@ ln -s "$REPO_DIR" "$HOME/.local/share/chezmoi"
 echo "Applying dotfiles to home directory..."
 chezmoi init --apply
 
+TMUX_PLUGIN_DIR="$HOME/.config/tmux/plugins"
+TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
+OPENSESSIONS_DIR="$TMUX_PLUGIN_DIR/opensessions"
+
+# 6. Provision tmux TPM plugins so tmux works immediately after install.sh
+echo "Provisioning tmux plugins under $TMUX_PLUGIN_DIR..."
+mkdir -p "$TMUX_PLUGIN_DIR"
+
+if [ ! -d "$TPM_DIR" ]; then
+    echo "Installing tmux plugin manager (TPM)..."
+    git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+fi
+
+if [ ! -d "$OPENSESSIONS_DIR" ]; then
+    echo "Installing opensessions tmux plugin..."
+    git clone https://github.com/Ataraxy-Labs/opensessions "$OPENSESSIONS_DIR"
+fi
+
+if command -v bun >/dev/null 2>&1; then
+    echo "Installing opensessions Bun dependencies..."
+    (
+        cd "$OPENSESSIONS_DIR"
+        bun install
+    )
+else
+    echo "bun is not available in PATH; skipping opensessions dependency install."
+fi
+
 echo "Dotfiles successfully installed! Please restart your terminal."
