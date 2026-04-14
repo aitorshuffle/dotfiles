@@ -19,6 +19,12 @@ The Bash alias/function set includes a tmux workflow:
 - `tcd` jumps back to that stored session root from inside a tmux pane. If `TMUX_SESSION_ROOT` is missing, it falls back to tmux's built-in `session_path`.
 - `tl` lists tmux sessions together with their recorded `session_path`.
 
+## Reloading and plugins
+
+- `prefix + r` runs `source-file ~/.config/tmux/tmux.conf`, which reloads the tmux config for the current tmux server. This updates reloadable tmux settings such as bindings, status bar options, and plugin declarations across sessions on that server, but it does not restart existing panes or shells.
+- `prefix + I` is provided by TPM. It installs any plugins declared in `tmux.conf` that are not present yet. Use it after adding a new `set -g @plugin ...` entry.
+- When changing plugin declarations, the usual flow is: edit `tmux.conf`, press `prefix + I` to install missing plugins, then press `prefix + r` to reload the config.
+
 **Uninstall opensessions** — use the script under your plugin path, for example:
 
 `~/.config/tmux/plugins/opensessions/integrations/tmux-plugin/scripts/uninstall.sh`  
