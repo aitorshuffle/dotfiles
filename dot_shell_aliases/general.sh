@@ -28,6 +28,8 @@ alias ports="lsof -i -P -n | grep LISTEN"
 
 # tmux
 # ref: https://www.hardscrabble.net/2023/my-tmux-aliases/
+unalias t tcd tl ta to 2>/dev/null || true
+
 tmux_session_name() {
     current_path=$PWD
     current_name=
