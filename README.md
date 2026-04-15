@@ -12,6 +12,7 @@ This repository is basically Eric J. Ma's [Data Science Bootstrap Notes](https:/
    - **[uv](https://github.com/astral-sh/uv)**: Lightning-fast Python package installer.
    - **[pixi](https://github.com/prefix-dev/pixi)**: Extremely fast C++ conda alternative.
    - **[starship](https://starship.rs/)**: Aesthetic, blazing-fast cross-shell prompt.
+   - **[tldr / tealdeer](https://github.com/tealdeer-rs/tealdeer)**: Fast local command examples with auto-updating cache.
 
 ## Prerequisites & IDE Setup
 
@@ -56,6 +57,7 @@ The architecture strictly categorizes shell responsibilities:
 - `dot_gitconfig.tmpl` -> Deploys to `~/.gitconfig`. Tracked Git environment (diff-so-fancy integrations, pull rebasing, and automated upstreams).
 - `dot_config/starship.toml` -> Deploys to `~/.config/starship.toml`. Beautiful shell prompt definitions. 
 - `dot_config/direnv/direnv.toml` -> Deploys to `~/.config/direnv/direnv.toml`. Overrides direnv background behavior (like implicitly loading generic `.env` files).
+- `dot_config/tealdeer/config.toml` -> Deploys to `~/.config/tealdeer/config.toml`. Configures `tldr` cache update behavior and display defaults.
 
 ## Pending (ToDos)
 NOTE: pending implementations will be managed through issues instead of this list, in https://github.com/aitorshuffle/dotfiles/issues.
