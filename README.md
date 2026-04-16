@@ -13,6 +13,7 @@ This repository is basically Eric J. Ma's [Data Science Bootstrap Notes](https:/
    - **[pixi](https://github.com/prefix-dev/pixi)**: Extremely fast C++ conda alternative.
    - **[starship](https://starship.rs/)**: Aesthetic, blazing-fast cross-shell prompt.
    - **[tldr / tealdeer](https://github.com/tealdeer-rs/tealdeer)**: Fast local command examples with auto-updating cache.
+   - **[lazygit](https://github.com/jesseduffield/lazygit)**: Terminal UI for fast Git workflows.
    - **[tennis](https://github.com/gurgeous/tennis)**: Interactive terminal tables for CSV, JSON, and SQLite. `install.sh` installs it from upstream release binaries (Linux amd64/arm64, Apple Silicon); elsewhere use Homebrew or the releases page.
 
 ## Prerequisites & IDE Setup
@@ -33,6 +34,36 @@ git clone https://github.com/aitorshuffle/dotfiles.git
 cd dotfiles
 ./install.sh
 ```
+
+`./install.sh` installs `pixi` (if missing), then installs the base CLI toolchain globally via `pixi`, including `lazygit`. After installation, launch it with:
+
+```bash
+lazygit
+```
+
+### Pixi Global Toolchain
+
+`install.sh` runs:
+
+```bash
+pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit
+```
+
+| Tool | Description | Homepage | Example usage |
+| --- | --- | --- | --- |
+| `ripgrep` (`rg`) | Fast recursive text search in files. | https://github.com/BurntSushi/ripgrep | `rg "TODO" .` |
+| `bat` | `cat` replacement with syntax highlighting and paging. | https://github.com/sharkdp/bat | `bat README.md` |
+| `fd-find` (`fd`) | Fast and user-friendly alternative to `find`. | https://github.com/sharkdp/fd | `fd install` |
+| `fzf` | Fuzzy finder for interactive selection in shell workflows. | https://github.com/junegunn/fzf | `git branch \| fzf` |
+| `croc` | Secure file transfer between two machines from the terminal. | https://github.com/schollz/croc | `croc send report.csv` |
+| `eza` | Modern `ls` replacement with better defaults and icons. | https://github.com/eza-community/eza | `eza -la --icons` |
+| `mosh` | Mobile shell for resilient remote terminal sessions. | https://mosh.org/ | `mosh user@server` |
+| `tmux` | Terminal multiplexer for persistent/split sessions. | https://github.com/tmux/tmux | `tmux new -s work` |
+| `atuin` | Shell history with search, sync, and better recall UX. | https://github.com/atuinsh/atuin | `atuin search docker` |
+| `glow-md` (`glow`) | Render Markdown beautifully in the terminal. | https://github.com/charmbracelet/glow | `glow README.md` |
+| `unzip` | Extract `.zip` archives from the command line. | https://infozip.sourceforge.net/UnZip.html | `unzip archive.zip` |
+| `tealdeer` (`tldr`) | Fast local TLDR command examples client. | https://github.com/tealdeer-rs/tealdeer | `tldr tar` |
+| `lazygit` | Interactive terminal UI for Git operations. | https://github.com/jesseduffield/lazygit | `lazygit` |
 
 >**Note on existing configurations:**
 > `chezmoi` will aggressively overwrite conflicting configurations on your new machine safely. If you have active code in `~/.bashrc` on your current computer, copy it into this repository's `dot_bashrc` **before** running `install.sh`!
