@@ -13,6 +13,7 @@ This repository is basically Eric J. Ma's [Data Science Bootstrap Notes](https:/
    - **[pixi](https://github.com/prefix-dev/pixi)**: Extremely fast C++ conda alternative.
    - **[starship](https://starship.rs/)**: Aesthetic, blazing-fast cross-shell prompt.
    - **[tldr / tealdeer](https://github.com/tealdeer-rs/tealdeer)**: Fast local command examples with auto-updating cache.
+   - **[tennis](https://github.com/gurgeous/tennis)**: Interactive terminal tables for CSV, JSON, and SQLite. `install.sh` installs it from upstream release binaries (Linux amd64/arm64, Apple Silicon); elsewhere use Homebrew or the releases page.
 
 ## Prerequisites & IDE Setup
 
