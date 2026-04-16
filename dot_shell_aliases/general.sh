@@ -226,3 +226,8 @@ tcd() {
 alias 'tl'="tmux list-sessions -F '#{session_name} (#{session_path})' 2>/dev/null || echo 'no sessions'"
 alias 'ta'='tmux attach-session'
 alias 'to'='tmux attach-session -t'
+
+# neovim, vim, vi
+alias 'vi'='vim'
+alias 'vim'='nvim'
+
