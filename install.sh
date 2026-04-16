@@ -82,6 +82,34 @@ if ! command -v diff-so-fancy >/dev/null 2>&1; then
     chmod +x "$HOME/.local/bin/diff-so-fancy"
 fi
 
+# tennis — https://github.com/gurgeous/tennis (CSV/JSON/SQLite tables in the terminal). Not on conda-forge, so not installable via `pixi global`; use upstream release tarballs like diff-so-fancy.
+if ! command -v tennis >/dev/null 2>&1; then
+    TENNIS_PLATFORM=""
+    case "$(uname -s)_$(uname -m)" in
+        Linux_x86_64) TENNIS_PLATFORM=linux_amd64 ;;
+        Linux_aarch64|Linux_arm64) TENNIS_PLATFORM=linux_arm64 ;;
+        Darwin_arm64) TENNIS_PLATFORM=darwin_arm64 ;;
+    esac
+    if [ -n "$TENNIS_PLATFORM" ]; then
+        TENNIS_TAG=$(curl -fsSI https://github.com/gurgeous/tennis/releases/latest | tr -d '\r' | sed -n 's/^[lL]ocation:.*\/tag\///p' | head -n1)
+        TENNIS_VER=$(echo "$TENNIS_TAG" | sed 's/^v//')
+        if [ -z "$TENNIS_TAG" ] || [ -z "$TENNIS_VER" ]; then
+            echo "Could not resolve latest tennis release tag. Skipping tennis."
+        else
+            echo "Installing tennis ($TENNIS_TAG) to ~/.local/bin..."
+            mkdir -p "$HOME/.local/bin"
+            TENNIS_TMP=$(mktemp -d)
+            TENNIS_URL="https://github.com/gurgeous/tennis/releases/download/${TENNIS_TAG}/tennis_${TENNIS_VER}_${TENNIS_PLATFORM}.tar.gz"
+            curl -fsSL "$TENNIS_URL" | tar -xz -C "$TENNIS_TMP"
+            mv "$TENNIS_TMP/tennis_${TENNIS_VER}_${TENNIS_PLATFORM}/tennis" "$HOME/.local/bin/tennis"
+            chmod +x "$HOME/.local/bin/tennis"
+            rm -rf "$TENNIS_TMP"
+        fi
+    else
+        echo "Skipping tennis: no prebuilt binary for $(uname -s)/$(uname -m). Use Homebrew on macOS or see https://github.com/gurgeous/tennis/releases"
+    fi
+fi
+
 # Automatically install a Linux-native Nerd Font for eza and starship
 FONT_DIR="$HOME/.local/share/fonts"
 if ! fc-list 2>/dev/null | grep -qi "FiraCode"; then
