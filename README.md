@@ -14,6 +14,7 @@ This repository is basically Eric J. Ma's [Data Science Bootstrap Notes](https:/
    - **[starship](https://starship.rs/)**: Aesthetic, blazing-fast cross-shell prompt.
    - **[tldr / tealdeer](https://github.com/tealdeer-rs/tealdeer)**: Fast local command examples with auto-updating cache.
    - **[lazygit](https://github.com/jesseduffield/lazygit)**: Terminal UI for fast Git workflows.
+   - **[Neovim](https://neovim.io/)**: Modern Vim-based editor for terminal-first editing.
    - **[tennis](https://github.com/gurgeous/tennis)**: Interactive terminal tables for CSV, JSON, and SQLite. `install.sh` installs it from upstream release binaries (Linux amd64/arm64, Apple Silicon); elsewhere use Homebrew or the releases page.
 
 ## Prerequisites & IDE Setup
@@ -46,7 +47,7 @@ lazygit
 `install.sh` runs:
 
 ```bash
-pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit
+pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit neovim
 ```
 
 | Tool | Description | Homepage | Example usage |
@@ -64,6 +65,7 @@ pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-m
 | `unzip` | Extract `.zip` archives from the command line. | https://infozip.sourceforge.net/UnZip.html | `unzip archive.zip` |
 | `tealdeer` (`tldr`) | Fast local TLDR command examples client. | https://github.com/tealdeer-rs/tealdeer | `tldr tar` |
 | `lazygit` | Interactive terminal UI for Git operations. | https://github.com/jesseduffield/lazygit | `lazygit` |
+| `neovim` (`nvim`) | Hyperextensible Vim-based text editor. | https://neovim.io/ | `nvim README.md` |
 
 >**Note on existing configurations:**
 > `chezmoi` will aggressively overwrite conflicting configurations on your new machine safely. If you have active code in `~/.bashrc` on your current computer, copy it into this repository's `dot_bashrc` **before** running `install.sh`!
