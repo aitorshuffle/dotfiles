@@ -1,8 +1,8 @@
 # General Shell Aliases (powered by eza)
-alias ls='eza --icons --color-scale -o'
-alias ll='eza -la --icons --group-directories-first --color-scale -o'
-alias la='eza -a --icons --group-directories-first --color-scale -o'
-alias l='eza -la --icons --group-directories-first --header --color-scale -o'
+alias ls='clear && eza --icons --color-scale -o'
+alias ll='clear && eza -la --icons --group-directories-first --color-scale -o'
+alias la='clear && eza -a --icons --group-directories-first --color-scale -o'
+alias l='clear && eza -la --icons --group-directories-first --header --color-scale -o'
 unalias ld 2>/dev/null || true
 
 # find recursively in current folder the most recently modified files
