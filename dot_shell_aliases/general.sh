@@ -5,6 +5,10 @@ alias la='eza -a --icons --group-directories-first --color-scale -o'
 alias l='eza -la --icons --group-directories-first --header --color-scale -o'
 unalias ld 2>/dev/null || true
 
+# find recursively in current folder the most recently modified files
+# use: `lrn` or 'lrn -n 20` (to show 20 newest items)
+alias lrn="find . -type f -printf '%TY-%Tm-%Td %TH:%TM:%TS %p\n' | sort -r | head"
+
 _human_size() {
     human_size=$(numfmt --to=iec --suffix='' --format="%.1f" "$1" 2>/dev/null) || human_size="$1"
     printf '%s\n' "${human_size/K/k}"
