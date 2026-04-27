@@ -60,7 +60,7 @@ fi
 
 # 3. Install core system software packages (Eric J Ma Setup)
 echo "Installing global binaries via pixi..."
-pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit nvim
+pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit nvim markdownlint-cli
 
 # Prime TLDR pages so the first run has docs available right away.
 if command -v tldr >/dev/null 2>&1; then
