@@ -16,7 +16,7 @@ _human_size() {
 }
 
 ld() {
-    recursive_timeout=${L_RECURSIVE_SIZE_TIMEOUT:-5}
+    recursive_timeout=${L_RECURSIVE_SIZE_TIMEOUT:-25}
     recursive_timed_out=0
     entries=()
 

@@ -14,8 +14,8 @@ fi
 # General history settings
 HISTCONTROL=ignoreboth
 shopt -s histappend
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=50000
+HISTFILESIZE=100000
 
 # Update the values of LINES and COLUMNS after each command
 shopt -s checkwinsize
@@ -65,3 +65,19 @@ export NVM_DIR="$HOME/.nvm"
 if command -v direnv >/dev/null 2>&1; then
     eval "$(direnv hook bash)"
 fi
+
+# Keep history shared across interactive shells, including tmux panes.
+# - history -a writes the current command immediately.
+# - history -n pulls in history written by other shells before the next prompt.
+__sync_bash_history() {
+    history -a
+    history -n
+}
+
+case ";${PROMPT_COMMAND-};" in
+    *";__sync_bash_history;"*) ;;
+    *) PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__sync_bash_history" ;;
+esac
+
+# Share the Windows Codex app home with the WSL CLI.
+export CODEX_HOME="/mnt/c/Users/aitor/.codex"
