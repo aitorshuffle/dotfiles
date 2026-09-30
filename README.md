@@ -47,7 +47,7 @@ lazygit
 `install.sh` runs:
 
 ```bash
-pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit gh nvim
+pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit gh nvim markdownlint-cli
 ```
 
 | Tool | Description | Homepage | Example usage |
@@ -64,6 +64,7 @@ pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-m
 | `glow-md` (`glow`) | Render Markdown beautifully in the terminal. | https://github.com/charmbracelet/glow | `glow README.md` |
 | `unzip` | Extract `.zip` archives from the command line. | https://infozip.sourceforge.net/UnZip.html | `unzip archive.zip` |
 | `tealdeer` (`tldr`) | Fast local TLDR command examples client. | https://github.com/tealdeer-rs/tealdeer | `tldr tar` |
+| `markdownlint-cli` | Markdown linting command line tool. | https://github.com/igorshubovych/markdownlint-cli | `markdownlint README.md` |
 | `gh` | GitHub CLI for issues, pull requests and Actions. | https://cli.github.com/ | `gh run list` |
 | `lazygit` | Interactive terminal UI for Git operations. | https://github.com/jesseduffield/lazygit | `lazygit` |
 | `nvim` | Hyperextensible Vim-based text editor. | https://neovim.io/ | `nvim README.md` |
