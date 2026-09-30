@@ -113,3 +113,5 @@ Run `bash scripts/check-shell-environment.sh` after changes. It uses a temporary
 Apply only the changed files with `chezmoi apply ~/.path ~/.bashrc` after reviewing `chezmoi diff ~/.path ~/.bashrc`. Preserve machine-local additions first; do not run the full installer to deploy a small shell fix.
 
 Cross-project agent behavior and lesson capture belong in [genai-tools](../genai-tools/own/lessons/README.md). Machine topology and deployment facts belong in the infrastructure wiki (`beelink-mini-s-pro:/home/aitor/brain`).
+
+Existing agent sessions may restore a cached PATH captured before this fix. In the current command, run `. "$HOME/.path"` before using the tool, or use the verified executable location. Refresh the agent session/app and check discovery again; do not maintain generated shell snapshots by hand. This does not address launcher failures that occur before a shell starts.
