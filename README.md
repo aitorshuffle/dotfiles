@@ -47,7 +47,7 @@ lazygit
 `install.sh` runs:
 
 ```bash
-pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit neovim
+pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-md unzip tealdeer lazygit gh nvim
 ```
 
 | Tool | Description | Homepage | Example usage |
@@ -64,8 +64,9 @@ pixi global install ripgrep bat fd-find fzf croc eza mosh tmux=3.6a atuin glow-m
 | `glow-md` (`glow`) | Render Markdown beautifully in the terminal. | https://github.com/charmbracelet/glow | `glow README.md` |
 | `unzip` | Extract `.zip` archives from the command line. | https://infozip.sourceforge.net/UnZip.html | `unzip archive.zip` |
 | `tealdeer` (`tldr`) | Fast local TLDR command examples client. | https://github.com/tealdeer-rs/tealdeer | `tldr tar` |
+| `gh` | GitHub CLI for issues, pull requests and Actions. | https://cli.github.com/ | `gh run list` |
 | `lazygit` | Interactive terminal UI for Git operations. | https://github.com/jesseduffield/lazygit | `lazygit` |
-| `neovim` (`nvim`) | Hyperextensible Vim-based text editor. | https://neovim.io/ | `nvim README.md` |
+| `nvim` | Hyperextensible Vim-based text editor. | https://neovim.io/ | `nvim README.md` |
 
 >**Note on existing configurations:**
 > `chezmoi` will aggressively overwrite conflicting configurations on your new machine safely. If you have active code in `~/.bashrc` on your current computer, copy it into this repository's `dot_bashrc` **before** running `install.sh`!
@@ -97,9 +98,18 @@ The architecture strictly categorizes shell responsibilities:
 NOTE: pending implementations will be managed through issues instead of this list, in https://github.com/aitorshuffle/dotfiles/issues.
 You can add an issue using `gh issue create -t "issue title" -a "@me"`
 * Add VSCode/Cursor/Antigravity settings so that they are synchronize across machines and can be used in any of them
-* Reference genai-tools
 * Check and install the desired tpm plugins from https://github.com/tmux-plugins/list
 ## References
 
 - [Eric J. Ma's Data Science Bootstrap Notes](https://ericmjl.github.io/data-science-bootstrap-notes/)
 - [Chezmoi Reference Documentation](https://www.chezmoi.io/)
+
+## Agent and batch shell environment
+
+`dot_path` owns user tool paths, including `~/.pixi/bin`. `dot_bashrc` loads it and the configured `CODEX_HOME` before its interactive guard. Prompts, completions, aliases and NVM stay interactive. Noninteractive login Bash on Ubuntu reads `~/.profile`, which sources `~/.bashrc`. A deliberately nonlogin shell (`bash -c`, or an agent call with login disabled) must inherit the environment or explicitly source `~/.path`.
+
+Run `bash scripts/check-shell-environment.sh` after changes. It uses a temporary HOME and minimal PATH to verify Pixi tool discovery, repeatable PATH loading and exclusion of interactive hooks. To check the deployed setup: `env -i HOME="$HOME" USER="$USER" PATH=/usr/bin:/bin /bin/bash -lc 'command -v gh; command -v pixi'`.
+
+Apply only the changed files with `chezmoi apply ~/.path ~/.bashrc` after reviewing `chezmoi diff ~/.path ~/.bashrc`. Preserve machine-local additions first; do not run the full installer to deploy a small shell fix.
+
+Cross-project agent behavior and lesson capture belong in [genai-tools](../genai-tools/own/lessons/README.md). Machine topology and deployment facts belong in the infrastructure wiki (`beelink-mini-s-pro:/home/aitor/brain`).

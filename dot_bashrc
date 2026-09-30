@@ -1,15 +1,18 @@
 # ~/.bashrc
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
 # Source PATH configuration
 if [ -f "$HOME/.path" ]; then
     source "$HOME/.path"
 fi
+
+# Share the Windows Codex app home with the WSL CLI.
+export CODEX_HOME="/mnt/c/Users/aitor/.codex"
+
+# Interactive hooks must not run in agent or batch shells.
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # General history settings
 HISTCONTROL=ignoreboth
@@ -78,6 +81,3 @@ case ";${PROMPT_COMMAND-};" in
     *";__sync_bash_history;"*) ;;
     *) PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__sync_bash_history" ;;
 esac
-
-# Share the Windows Codex app home with the WSL CLI.
-export CODEX_HOME="/mnt/c/Users/aitor/.codex"

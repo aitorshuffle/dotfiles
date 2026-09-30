@@ -1,25 +1,21 @@
-# ~/.path
+# ~/.path — shared by interactive shells and noninteractive login shells.
 
-# Centralized location for PATH definitions
-
-# Make sure local user bins are in PATH (for tools like starship, uv, etc.)
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-# Pixi default binary path
-export PATH="$HOME/.pixi/bin:$PATH"
-
-# NPM global bins
-export PATH="$HOME/.npm-global/bin:$PATH"
-
-# Bun (opensessions TPM plugin runs `bun install` in ~/.config/tmux/plugins/opensessions)
+# Keep user-installed tools ahead of system packages without duplicating entries.
+__aitor_prepend_path() {
+    case ":${PATH:-}:" in
+        *:"$1":*) ;;
+        *) PATH="$1${PATH:+:$PATH}" ;;
+    esac
+}
+__aitor_prepend_path "$HOME/.local/bin"
+__aitor_prepend_path "$HOME/bin"
+__aitor_prepend_path "$HOME/.pixi/bin"
+__aitor_prepend_path "$HOME/.npm-global/bin"
 export BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
-export PATH="$BUN_INSTALL/bin:$PATH"
+__aitor_prepend_path "$BUN_INSTALL/bin"
+export PATH
+unset -f __aitor_prepend_path
 
-# Source local environment variable script (if it exists)
 if [ -f "$HOME/.local/bin/env" ]; then
     . "$HOME/.local/bin/env"
 fi
-
-# Examples of how to expand PATH:
-# export PATH="/usr/local/go/bin:~/go/bin:$PATH"
-# export PATH="$HOME/.cargo/bin:$PATH"
