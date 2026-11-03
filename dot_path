@@ -11,6 +11,8 @@ __aitor_prepend_path "$HOME/.local/bin"
 __aitor_prepend_path "$HOME/bin"
 __aitor_prepend_path "$HOME/.pixi/bin"
 __aitor_prepend_path "$HOME/.npm-global/bin"
+# Go-installed CLIs (cli-printing-press and the CLIs it prints).
+__aitor_prepend_path "$HOME/go/bin"
 export BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
 __aitor_prepend_path "$BUN_INSTALL/bin"
 export PATH
