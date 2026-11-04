@@ -109,7 +109,15 @@ You can add an issue using `gh issue create -t "issue title" -a "@me"`
 
 `dot_path` owns user tool paths, including `~/.pixi/bin`. `dot_bashrc` loads it and the configured `CODEX_HOME` before its interactive guard. Prompts, completions, aliases and NVM stay interactive. Noninteractive login Bash on Ubuntu reads `~/.profile`, which sources `~/.bashrc`. A deliberately nonlogin shell (`bash -c`, or an agent call with login disabled) must inherit the environment or explicitly source `~/.path`.
 
-Run `bash scripts/check-shell-environment.sh` after changes. It uses a temporary HOME and minimal PATH to verify Pixi tool discovery, repeatable PATH loading and exclusion of interactive hooks. To check the deployed setup: `env -i HOME="$HOME" USER="$USER" PATH=/usr/bin:/bin /bin/bash -lc 'command -v gh; command -v pixi'`.
+WSL shell startup selects `$HOME/.codex-wsl`, a Linux runtime profile with its
+own launcher temporary directory. Prepare it before deployment using
+[the genai-tools procedure](../genai-tools/own/AGENTS/vendor-maps/codex.md#isolating-wsl-launcher-temporary-files).
+That procedure links shared configuration and existing state without sharing
+launcher temp files with Windows Codex. Restart the desktop app after changing
+this setting, then verify ordinary sandboxed execution. The active machine paths
+are documented in the canonical infrastructure wiki.
+
+Run `bash scripts/check-shell-environment.sh` after changes. It uses a temporary HOME and minimal PATH to verify Pixi tool discovery, selection of the isolated WSL Codex home, repeatable PATH loading and exclusion of interactive hooks. To check the deployed setup: `env -i HOME="$HOME" USER="$USER" PATH=/usr/bin:/bin /bin/bash -lc 'command -v gh; command -v pixi'`.
 
 Apply only the changed files with `chezmoi apply ~/.path ~/.bashrc` after reviewing `chezmoi diff ~/.path ~/.bashrc`. Preserve machine-local additions first; do not run the full installer to deploy a small shell fix.
 

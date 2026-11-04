@@ -15,7 +15,7 @@ env -i HOME="$fixture_home" PATH=/usr/bin:/bin /bin/bash --noprofile --norc -eu 
     for tool in gh pixi; do
         [[ "$(command -v "$tool")" == "$HOME/.pixi/bin/$tool" ]]
     done
-    [[ -n "${CODEX_HOME:-}" ]]
+    [[ "${CODEX_HOME:-}" == "$HOME/.codex-wsl" ]]
     [[ -z "${PROMPT_COMMAND:-}" && -z "${NVM_DIR:-}" ]]
     first_path="$PATH"
     . "$HOME/.path"

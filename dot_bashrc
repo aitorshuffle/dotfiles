@@ -5,8 +5,8 @@ if [ -f "$HOME/.path" ]; then
     source "$HOME/.path"
 fi
 
-# Share the Windows Codex app home with the WSL CLI.
-export CODEX_HOME="/mnt/c/Users/aitor/.codex"
+# WSL keeps launcher temp files on Linux; this profile links shared app state.
+export CODEX_HOME="$HOME/.codex-wsl"
 
 # Interactive hooks must not run in agent or batch shells.
 case $- in
